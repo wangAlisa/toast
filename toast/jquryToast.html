@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{
+	padding:0;
+	margin:0;
+}
+body{
+	background-size:cover;
+	background-image:url(bg.jpg);
+}
+#demoWrap{
+	color:#fff;
+	font-family:'Microsoft YaHei';
+	margin:20px 0 0 20px;
+}
+h3{
+	font-weight:normal;
+	padding:0;
+	margin:10px 0 5px 0;
+}
+input{
+	padding:3px 5px;
+}
+</style>
+<script src="jquery/lib/jquery-1.11.1.min.js"></script>
+<script src="jquery/dist/dialog.js"></script>
+<script>
+$(function(){
+	$(".bas0").click(function(){
+		dialog({"type":0,"content":"基本模式：类型0"});
+	});
+	$(".bas1").click(function(){
+		dialog({"type":1,"content":"基本模式：类型1"});
+	});
+	$(".bas2").click(function(){
+		dialog({"type":2,"content":"基本模式：类型2"});
+	});
+		
+	$(".ani0").click(function(){
+		dialog({"type":2,"content":"对话框类型2+动画类型0","animateType":0});
+	});
+	$(".ani1").click(function(){
+		dialog({"type":1,"content":"对话框类型1+动画类型1","animateType":1});
+	});
+	$(".ani2").click(function(){
+		dialog({"type":0,"content":"对话框类型0+动画类型2","animateType":2});
+	});
+	$(".ani3").click(function(){
+		dialog({"type":0,"content":"对话框类型0+动画类型2+动画时长[2000,1000]","animateType":2,"animateSpeed":[2000,1000]});
+	});
+	
+	
+	
+	$(".sh0").click(function(){
+		dialog({"type":1,"content":"背景遮罩动画时长[800:800]","shadeAnimateSpeed":[800,800]});
+	});
+	$(".sh1").click(function(){
+		dialog({"type":1,"content":"无背景遮罩","hasShade":false});
+	});
+	$(".sh2").click(function(){
+		dialog({"type":2,"content":"背景遮罩颜色#339933，透明度0.2","hasShade":true,"shadeColor":"#339933","shadeOpacity":0.2,"shadeAnimateSpeed":[500,500]});
+	});
+	$(".sh3").click(function(){
+		dialog({"type":0,"content":"点击遮罩关闭对话框（<span style='color:red;'>对话框类型1默认点击关闭</span>）","isShadeClose":true,"shadeAnimateSpeed":[500,500]});
+	});
+	
+	
+	
+	
+	$(".ic0").click(function(){
+		dialog({"type":0,"content":"图标类型：info","shadeAnimateSpeed":[800,800],"icon":"info"});
+	});
+	$(".ic1").click(function(){
+		dialog({"type":1,"content":"图标类型：question","icon":"question"});
+	});
+	$(".ic2").click(function(){
+		dialog({"type":2,"content":"图标类型：warning","icon":"warning"});
+	});
+	$(".ic3").click(function(){
+		dialog({"type":0,"content":"图标类型：error","icon":"error"});
+	});
+	$(".ic4").click(function(){
+		dialog({"type":1,"content":"图标类型：right","icon":"right"});
+	});
+	
+	$(".fn0").click(function(){
+		dialog({"type":1,"content":"对话框类型1和2，当对话框关闭后将触发ok回调函数<br>不管何种方式关闭：点击关闭按钮;自动关闭","icon":"right","ok":function(){
+			dialog({"type":2,"content":"对话框关闭了","ok":function(){
+				dialog({"type":2,"content":"类型2的对话框自动关闭了"});
+			}});
+		}});
+	});
+	
+
+	$(".fn1").click(function(){
+		dialog({"type":0,"content":"对话框类型为0，当点击按钮1将触发ok回调函；当点击按钮2、关闭对话框都将触发回调函数cancel","ok":function(){
+				dialog({"type":2,"content":"点击了<span style='color:red;'>确认</span>按钮"});
+		},"cancel":function(){
+				dialog({"type":2,"content":"点击了<span style='color:red;'>取消</span>按钮"});
+		}
+		});
+	});
+	
+	
+	$(".ot0").click(function(){
+		dialog({"type":1,"content":"对话框可移动（默认可移动）<br>点击按住对话框非控制区域拖动鼠标，则可移动对话框","icon":"right","canMove":true});
+	});
+	$(".ot1").click(function(){
+		dialog({"type":0,"content":"按钮文字（类型0默认为'确认','取消';类型1默认为'我知道了'）<br>类型2无按钮","icon":"right","btns":['按钮1文字','按钮2文字']});
+	});
+	$(".ot2").click(function(){
+		dialog({"type":2,"content":"500ms后自动关闭（只对类型2有效）","icon":"right","timeOut":500});
+	});
+	
+});
+</script>
+</head>
+
+<body>
+	<div id="demoWrap">
+		<h3>基本模式</h3>
+		<input class="bas0" type="button" value="类型1">
+		<input class="bas1" type="button" value="类型2">
+		<input class="bas2" type="button" value="类型3">
+		<h3>配置动画</h3>
+		<input class="ani0" type="button" value="动画类型0">
+		<input class="ani1" type="button" value="动画类型1">
+		<input class="ani2" type="button" value="动画类型2">
+		<input class="ani3" type="button" value="动画时长">
+		<h3>背景遮罩</h3>
+		<input class="sh0" type="button" value="背景遮罩动画时长">
+		<input class="sh1" type="button" value="无背景遮罩">
+		<input class="sh2" type="button" value="背景遮罩颜#色339933，透明度0.2">
+		<input class="sh3" type="button" value="点击遮罩关闭对话框">
+		<h3>图标类型</h3>
+		<input class="ic0" type="button" value="图标类型：info">
+		<input class="ic1" type="button" value="图标类型：question">
+		<input class="ic2" type="button" value="图标类型：warning">
+		<input class="ic3" type="button" value="图标类型：error">
+		<input class="ic4" type="button" value="图标类型：right">
+		<h3>回调函数</h3>
+		<input class="fn0" type="button" value="对话框类型1、2唯一回调函数：ok">
+		<input class="fn1" type="button" value="对话框类型0，回调函数：ok、cancel">
+		<h3>其他配置</h3>
+		<input class="ot0" type="button" value="对话框可移动">
+		<input class="ot1" type="button" value="按钮文字">
+		<input class="ot2" type="button" value="自动关闭">
+	</div>
+</body>
+
+</html>
